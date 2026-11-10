@@ -38,8 +38,10 @@ with st.sidebar:
     providers = st.multiselect(
         "Anbieter (Reihenfolge = Fallback-Kette)", list(PROVIDER_INFO),
         default=["photon"], format_func=lambda k: PROVIDER_INFO[k])
-    contact = st.text_input("Kontakt-E-Mail (für User-Agent)", cfg("GEOBATCH_CONTACT"),
-                            help="Pflicht bei öffentlichem Nominatim, für alle Anbieter empfohlen.")
+    contact = st.text_input("Kontakt-E-Mail (für User-Agent)", "",
+                            placeholder="aus Secrets geladen" if cfg("GEOBATCH_CONTACT") else "",
+                            help="Pflicht bei öffentlichem Nominatim, für alle Anbieter empfohlen. "
+                                 "Ein Wert aus den Secrets wird nicht angezeigt.") or cfg("GEOBATCH_CONTACT")
     max_per_hour = st.slider("Max. Anfragen pro Stunde", 100, 3600, 1000, 100,
                              help="Gilt für alle Netzwerkanfragen zusammen. Cache-Treffer zählen nicht.")
     country = st.text_input("Länderfilter (ISO, kommagetrennt, leer = alle)", "de")
