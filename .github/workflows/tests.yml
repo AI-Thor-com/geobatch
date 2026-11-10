@@ -1,0 +1,24 @@
+name: Tests
+
+on:
+  push:
+  pull_request:
+
+# Minimale Rechte: der Workflow liest nur den Code
+permissions:
+  contents: read
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Abhängigkeiten installieren
+        run: pip install requests pandas openpyxl pytest
+      - name: Tests (ohne Netzwerk, gemockte Anbieter)
+        run: python -m pytest -q tests

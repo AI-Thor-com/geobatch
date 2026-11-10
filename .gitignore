@@ -1,0 +1,19 @@
+# Laufzeitdaten
+*.sqlite
+*.tmp
+__pycache__/
+.pytest_cache/
+.venv/
+
+# Geheimnisse (Keys gehören in Umgebungsvariablen oder Streamlit-Secrets)
+.streamlit/secrets.toml
+.env
+
+# Lokale Werkzeuge und Notizen – nicht Teil des Projekts
+/graft/
+.claude/
+.mcp.json
+AGENTS.md
+.ignore
+memory.md
+*.docx
